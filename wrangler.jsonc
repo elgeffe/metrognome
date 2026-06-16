@@ -1,0 +1,8 @@
+{
+	// Cloudflare Pages configuration for the static build.
+	// Deploy with:  npm run deploy   (runs `vite build` then `wrangler pages deploy`)
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "metrognome",
+	"compatibility_date": "2026-06-16",
+	"pages_build_output_dir": "build"
+}
