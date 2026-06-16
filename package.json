@@ -1,0 +1,30 @@
+{
+  "name": "metrognome",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A modern, mobile-first metronome PWA with tempo automation and bar/time practice tracking.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "test": "svelte-kit sync && vitest run",
+    "test:watch": "svelte-kit sync && vitest",
+    "gen:icons": "node scripts/generate-icons.mjs"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/kit": "^2.65.2",
+    "@sveltejs/vite-plugin-svelte": "^7.1.2",
+    "@types/node": "^25.9.3",
+    "@vite-pwa/sveltekit": "^1.1.0",
+    "svelte": "^5.56.3",
+    "svelte-check": "^4.6.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16",
+    "vite-plugin-pwa": "^1.3.0",
+    "vitest": "^4.1.9"
+  }
+}
