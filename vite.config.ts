@@ -2,6 +2,11 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { SvelteKitPWA } from '@vite-pwa/sveltekit';
 import { defineConfig } from 'vite';
 
+// GitHub Pages serves project sites under a subpath (e.g. /metrognome/). The
+// same base must drive both SvelteKit (svelte.config.js) and the service
+// worker's navigation fallback so offline navigation resolves the right shell.
+const base = process.env.BASE_PATH ?? '';
+
 export default defineConfig({
 	plugins: [
 		sveltekit(),
@@ -35,8 +40,14 @@ export default defineConfig({
 			},
 			workbox: {
 				globPatterns: ['**/*.{js,css,html,svg,png,ico,webmanifest,woff2}'],
-				navigateFallback: '/',
-				cleanupOutdatedCaches: true
+				cleanupOutdatedCaches: true,
+				// The SPA shell is written by adapter-static after the SW is generated,
+				// so it isn't picked up by globPatterns. Precache the base URL itself
+				// (a per-build revision busts it on each deploy) and bind navigations
+				// to it. Deny asset/file requests so they never get the HTML fallback.
+				additionalManifestEntries: [{ url: `${base}/`, revision: `shell-${Date.now()}` }],
+				navigateFallback: `${base}/`,
+				navigateFallbackDenylist: [/\/_app\//, /\.[^/]+$/]
 			},
 			devOptions: {
 				enabled: false

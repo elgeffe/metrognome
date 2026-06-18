@@ -5,9 +5,6 @@ node_modules
 /.svelte-kit
 /dist
 
-# wrangler / cloudflare local state
-/.wrangler
-
 # dev artifacts
 .env
 .env.*
